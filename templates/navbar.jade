@@ -1,0 +1,12 @@
+extend layout.jade
+
+block content
+  - var themes = 'light dark'.split(' ')
+  - var size_variants = 'small default large'.split(' ')
+
+  .row
+    each theme in themes
+      .col-
+        each size_variant in size_variants
+          .navbar(class= 'navbar-' + size_variant)
+            

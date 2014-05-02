@@ -1,0 +1,118 @@
+
+icon_owner(base_selector, all_settings, text='.text', icon=i)
+  icon_positions = left right
+
+  .{base_selector}
+    vertical-align bottom
+    relative()
+
+  for size_name, settings in all_settings
+    horizontal_padding = settings['horizontal_padding']
+    vertical_padding = settings['vertical_padding']
+    font_size = settings['font_size']
+    icon_size = settings['icon_size']
+    box_height = settings['box_height']
+    icon_height = settings['icon_height']
+
+    if size_name == default
+      selector = ".%s" % base_selector
+    else
+      selector = ".%s.%s-%s" % (base_selector base_selector s(size_name))
+
+    {selector}
+      padding vertical_padding horizontal_padding
+      font-size font_size
+
+      {text}
+        font-size font_size
+
+      {icon}
+        font-size icon_size
+        text-align center
+        absolute(0)
+
+      &.{base_selector}-icon
+
+        {icon}
+          left 0
+
+        {text}
+          display none
+
+      if box_height is a 'unit'
+        line-height (box_height - vertical_padding * 2)
+        box_inline(auto, box_height)
+
+        {icon}
+          line-height box_height
+          box(box_height)
+
+        &.{base_selector}-icon
+          box_inline(box_height)
+
+      else if icon_height is defined
+        {icon}
+          line-height icon_height
+          top 50%
+          margin-top -(icon_height / 2)
+          box(icon_height)
+
+      for pos in icon_positions
+        &.{base_selector}-icon-{pos}
+          if box_height is a 'unit'
+            pad = box_height + horizontal_padding
+
+          else if icon_height is defined
+            pad = icon_height
+
+          padding-{pos} pad
+
+          {icon}
+            {pos} 0
+
+      &.{base_selector}-icon-double
+        if box_height is a 'unit'
+          pad = box_height + horizontal_padding
+
+        else if icon_height is defined
+          pad = icon_height
+
+        padding-left pad
+        padding-right pad
+
+        .icon-left
+          left 0
+
+        .icon-right
+          right 0
+
+
+
+box_settings = {
+  small: {
+    horizontal_padding: small_horizontal_padding
+    vertical_padding: small_vertical_padding
+    font_size: fonts.small
+    icon_size: fonts.base
+    box_height: 24px
+  }
+  default: {
+    horizontal_padding: default_horizontal_padding
+    vertical_padding: default_vertical_padding
+    font_size: fonts.base
+    icon_size: 16px
+    box_height: 32px
+  }
+  large: {
+    horizontal_padding: large_horizontal_padding
+    vertical_padding: large_vertical_padding
+    font_size: fonts.large
+    icon_size: 20px
+    box_height: 44px
+  }
+}
+
+icon_owner(box, box_settings)
+
+.box
+  background grey

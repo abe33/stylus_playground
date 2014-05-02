@@ -1,0 +1,104 @@
+// BASIC RESPONSIVE MIXINS
+lower_than(max)
+  media = 'only screen and (max-width: %spx)' % max
+
+  @media media
+    &
+      {block}
+
+greater_than(min)
+  media = 'only screen and (min-width: %spx)' % min
+
+  @media media
+    &
+      {block}
+
+between(min, max)
+  media = 'only screen and (min-width: %spx) and (max-width: %spx)' % (min max)
+
+  @media media
+    &
+      {block}
+
+// USER AGENT SPECIFIC MIXINS
+for_webkit()
+  @media only screen and (-webkit-min-device-pixel-ratio:0)
+    &
+      {block}
+
+for_gecko()
+  @-moz-document url-prefix()
+    &
+      {block}
+
+for_opera()
+  doesnotexist:-o-prefocus, &
+    {block}
+
+for_retina()
+  &
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2)
+      {block}
+
+// BREAKPOINT SPECIFIC MIXINS
+for_xs()
+  +lower_than(break.xs - 1)
+    {block}
+
+for_sm()
+  +between(break.xs, break.sm - 1)
+    {block}
+
+for_md()
+  +between(break.sm, break.md - 1)
+    {block}
+
+for_lg()
+  +between(break.md, break.lg - 1)
+    {block}
+
+for_xl()
+  +between(break.lg, break.xl - 1)
+    {block}
+
+for_xxl()
+  +greater_than(break.xl)
+    {block}
+
+// UPPER BOUND MIXINS
+up_to_sm()
+  +lower_than(break.sm - 1)
+    {block}
+
+up_to_md()
+  +lower_than(break.md - 1)
+    {block}
+
+up_to_lg()
+  +lower_than(break.lg - 1)
+    {block}
+
+up_to_xl()
+  +lower_than(break.xl - 1)
+    {block}
+
+// LOWER BOUND MIXINS
+down_from_xs()
+  +greater_than(break.xs)
+    {block}
+
+down_from_sm()
+  +greater_than(break.sm)
+    {block}
+
+down_from_md()
+  +greater_than(break.md)
+    {block}
+
+down_from_lg()
+  +greater_than(break.lg)
+    {block}
+
+down_from_xl()
+  +greater_than(break.xl)
+    {block}

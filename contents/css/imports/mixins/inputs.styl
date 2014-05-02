@@ -1,0 +1,39 @@
+
+placeholder()
+  &::-webkit-input-placeholder
+    {block}
+
+  &:-moz-placeholder
+    {block}
+
+  &::-moz-placeholder
+    {block}
+
+  &:-ms-input-placeholder
+    {block}
+
+  &::placeholder
+    {block}
+
+range_thumb()
+  &::-webkit-slider-thumb
+    -webkit-appearance none
+    {block}
+
+  &::-moz-range-thumb
+    {block}
+
+  & .thumb
+    {block}
+
+range_track()
+  & .track
+    {block}
+
+  +for_webkit()
+    &
+      -webkit-appearance none
+      {block}
+
+  &::-moz-range-track
+    {block}

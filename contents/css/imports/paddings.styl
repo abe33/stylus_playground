@@ -1,0 +1,14 @@
+for name, pad in paddings
+  if name == 'base'
+    class_name = 'padded'
+  else
+    class_name = '%s-padded' % s(name)
+
+  .{class_name}
+    padding: s('%spx' % pad)
+
+  .{class_name}-h
+    padding: 0 s('%spx' % pad)
+
+  .{class_name}-v
+    padding: s('%spx' % pad) 0

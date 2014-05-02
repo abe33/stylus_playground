@@ -1,0 +1,31 @@
+
+box_sizing(box=border-box)
+  vendor(box-sizing, box)
+
+box(width=null, height=width)
+  display block
+  width width unless width is null
+  height height unless height is null
+
+box_inline(width=null, height=width)
+  display inline-block
+  width width unless width is null
+  height height unless width is null
+
+bounds(top=null, left=null, bottom=null, right=null)
+  top top unless top is null
+  left left unless left is null
+  bottom bottom unless bottom is null
+  right right unless right is null
+
+absolute(top=null, left=null, bottom=null, right=null)
+  position absolute
+  bounds(top, left, bottom, right)
+
+relative(top=null, left=null, bottom=null, right=null)
+  position relative
+  bounds(top, left, bottom, right)
+
+fixed(top=null, left=null, bottom=null, right=null)
+  position fixed
+  bounds(top, left, bottom, right)

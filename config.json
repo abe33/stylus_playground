@@ -1,0 +1,16 @@
+{
+  "locals": {
+    "url": "http://localhost:8080",
+    "name": "Stylus Grid & Other CSS Tricks",
+    "owner": "Me",
+    "description": "The name should be obvious"
+  },
+  "plugins": [
+    "./node_modules/wintersmith-stylus/plugin.coffee",
+    "./node_modules/wintersmith-coffee/plugin.coffee"
+  ],
+  "require": {},
+  "jade": {
+    "pretty": true
+  }
+}

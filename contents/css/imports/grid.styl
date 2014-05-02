@@ -1,0 +1,113 @@
+
+row()
+  position relative
+  char_collapse()
+
+  & > *
+    reset_char_collapse()
+
+column_base()
+  display block
+  position relative
+  box_sizing()
+
+column_inline()
+  display inline-block
+  vertical-align top
+
+column_width(width)
+  width width
+
+column_collapse(size_name, grid_position, grid_width)
+  .{column_name}-{size_name}-{grid_position}-{grid_width}
+    column_base()
+
+  if size_name == default_break_size
+    .{column_name}-{grid_position}-{grid_width}
+      column_base()
+
+    if grid_width == default_grid_width
+      .{column_name}-{grid_position}
+        column_base()
+
+  if grid_width == default_grid_width
+    .{column_name}-{size_name}-{grid_position}
+      column_base()
+
+column(size_name, grid_position, grid_width)
+  width = 100% * (grid_position / grid_width)
+
+  .{column_name}-{size_name}-{grid_position}-{grid_width}
+    column_inline()
+    column_width(width)
+
+  if size_name == default_break_size
+    .{column_name}-{grid_position}-{grid_width}
+      column_inline()
+      column_width(width)
+
+    if grid_width == default_grid_width
+      .{column_name}-{grid_position}
+        column_inline()
+        column_width(width)
+
+  if grid_width == default_grid_width
+    .{column_name}-{size_name}-{grid_position}
+      column_inline()
+      column_width(width)
+
+offset(size_name, grid_position, grid_width)
+  width = 100% * (grid_position / grid_width)
+
+  .{offset_name}-{size_name}-{grid_position}-{grid_width}
+    margin-left width
+
+  if size_name == default_break_size
+    .{offset_name}-{grid_position}-{grid_width}
+      margin-left width
+
+    if grid_width == default_grid_width
+      .{offset_name}-{grid_position}
+        margin-left width
+
+  if grid_width == default_grid_width
+    .{offset_name}-{size_name}-{grid_position}
+      margin-left width
+
+.{row_name}
+  row()
+
+  for name, pad in gutters
+    half_pad = pad / 2
+    if name == 'base'
+      class_name = '%s' % s(gutter_name)
+    else
+      class_name = '%s-%s' % (s(name) s(gutter_name))
+
+    &.{class_name}
+      margin-left s('-%spx' % half_pad)
+      margin-right s('-%spx' % half_pad)
+
+      & > {column_selector}
+        padding-left s('%spx' % half_pad)
+        padding-right s('%spx' % half_pad)
+
+
+for name, breakpoint in break
+  if name == s('xs')
+    for grid_width in grid_widths
+      for grid_position in (1..grid_width)
+        column(name, grid_position, grid_width)
+        offset(name, grid_position, grid_width)
+  else
+    for grid_width in grid_widths
+      for grid_position in (1..grid_width)
+        column_collapse(name, grid_position, grid_width)
+
+    +greater_than(breakpoint)
+      for grid_width in grid_widths
+        for grid_position in (1..grid_width)
+          column(name, grid_position, grid_width)
+          offset(name, grid_position, grid_width)
+
+

@@ -1,0 +1,172 @@
+
+background_color = colors.light.light
+border_color = colors.light.dark
+shadow_color = darken(border_color, 20%)
+default_color = accents.yellow-green
+
+.checkbox
+  label
+    box()
+    cursor pointer
+    line-height 32px
+
+  input
+    display none
+
+    &:checked + label .check
+      &:before
+        background lighten(default_color, 30%)
+
+      &:after
+        left 18px
+        right 0px
+        transition left 0.2s ease-in, right 0.2s ease-out
+
+  &.checkbox-disabled
+    label
+      pointer-events none
+      color desaturate(shadow_color, 70%)
+
+    input:checked + label .check:before
+      background disable(lighten(default_color, 30%))
+
+    .check
+      &:before
+        border-color disable(border_color)
+        box-shadow inset 0 1px 3px -1px disable(shadow_color)
+
+      &:after
+        border-color disable(border_color)
+        box-shadow 0 32px 10px disable(shadow_color), 0 3px 0 disable(border_color), 0 3px 3px disable(shadow_color)
+
+  for name,accent in accents
+    &.checkbox-{name}
+      use_default = selector() == '.checkbox.checkbox-lighter'
+
+      input:checked + label .check
+        &:before
+          if use_default
+            background lighten(default_color, 30%)
+          else
+            background lighten(accent, 30%)
+
+      &.checkbox-disabled
+        input:checked + label .check:before
+          if use_default
+            background disable(lighten(default_color, 30%))
+          else
+            background disable(lighten(accent, 30%))
+
+
+  &.checkbox-small
+    label
+      font-size 14px
+      line-height 24px
+
+    .check
+      box_inline(36px, 24px)
+
+      &:before
+        box(36px, 24px)
+        border-top-width 2px
+
+      &:after
+        height 24px
+        right 12px
+
+    input:checked + label .check:after
+      left 12px
+      right 0px
+
+  &.checkbox-large
+    label
+      font-size 22px
+      line-height 43px
+
+    .check
+      border-radius 26px
+      box_inline(66px, 44px)
+
+      &:before
+        box_inline(66px, 44px)
+        border-radius 26px
+        border-top-width 4px
+
+      &:after
+        height 44px
+        right 22px
+        box-shadow 0 44px 10px shadow_color, 0 3px 0 border_color, 0 3px 3px shadow_color
+
+    input:checked + label .check:after
+      left 22px
+      right 0px
+
+  .text
+    padding s('0 %spx' % paddings.half)
+    box_inline()
+
+  .check
+    vertical-align top
+    border-radius 18px
+    overflow hidden
+    pointer-events none
+    box_inline(48px, 32px)
+    relative()
+
+    &:before, &:after
+      content ''
+      box(null, 32px)
+      absolute(initial, 0)
+      box_sizing()
+
+    &:before
+      top 0
+      border-radius 18px
+      width 48px
+      transition all 0.2s
+
+      border-top 3px solid border_color
+      background background_color
+
+      box-shadow inset 0 1px 3px -1px shadow_color
+
+    &:after
+      top 0
+      background background_color
+      border 1px solid border_color
+      border-radius 50%
+      height 32px
+      left 0px
+      right 18px
+      transition right 0.2s ease-in, left 0.2s ease-out
+      box-shadow 0 32px 10px shadow_color, 0 3px 0 border_color, 0 3px 3px shadow_color
+
+      force_gpu()
+
+.dark
+  background_color = colors.dark.light
+  border_color = darken(colors.dark.base, 20%)
+  shadow_color = darken(border_color, 20%)
+
+  .checkbox
+    .check
+      &:before
+        border-top 3px solid border_color
+        background background_color
+        box-shadow inset 0 1px 3px -1px shadow_color
+
+
+    &.checkbox-disabled
+      .check
+        &:before
+          border-color disable(border_color)
+          box-shadow inset 0 1px 3px -1px disable(shadow_color)
+
+        &:after
+          bg = colors.light.light
+          after_bg = desaturate(darken(bg, 20%), 80%)
+          after_border = desaturate(darken(after_bg, 5%), 10%)
+          background after_bg
+          border-color after_border
+          box-shadow 0 32px 10px shadow_color, 0 3px 0 after_border, 0 3px 3px shadow_color
+

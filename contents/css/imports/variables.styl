@@ -1,0 +1,90 @@
+// RESPONSIVE BREAKPOINTS
+break = {
+  xs: 480
+  sm: 768
+  md: 1024
+  lg: 1220
+  xl: 1600
+}
+
+// GRID SETUP
+max_grid_width = 12
+grid_widths = (2..max_grid_width)
+default_grid_width = 12
+
+default_break_size = 'sm'
+
+row_name = 'row'
+column_name = 'col'
+offset_name = 'off'
+column_selector = "[class*='%s-']" % s(column_name)
+gutter_name = 'gutter'
+
+// PADDINGS & MARGINS
+paddings = {
+  triple: 60
+  double: 40
+  base: 20
+  half: 10
+  quarter: 5
+  small: 3
+  thin: 1
+
+}
+
+// Pixel unit version of paddings
+paddings_px = {}
+for key,pad in paddings
+  paddings_px[key] = paddings[key] + 0px
+
+// Gutters values are basically copied from paddings
+gutters = paddings
+
+// Default elements padding
+default_horizontal_padding = paddings_px.half
+default_vertical_padding = paddings_px.quarter
+small_horizontal_padding = paddings_px.quarter
+small_vertical_padding = paddings_px.small
+large_horizontal_padding = paddings_px.base
+large_vertical_padding = paddings_px.half
+
+// FONTS
+font_interface = 'Open Sans', sans-serif
+fonts = {
+  small: 10px
+  base: 12px
+  large: 14px
+}
+
+// COLORS
+colors = {
+  light: {
+    dark: #BFB2F7
+    base: #DCD4F9
+    light: #FAE8FF
+    opposite: 'dark'
+  }
+  dark: {
+    dark: #171A2B
+    base: #393942
+    light: #4C435B
+    opposite: 'light'
+  }
+}
+
+accents = {
+  pink: #E01FBA
+  red: #E01F59
+  orange: #E0451F
+  yellow: #E0A61F
+  yellow-green: #ACD313
+  green: #59E01F
+  cyan: #1FBAE0
+  blue: #1F59E0
+  violet: #A61FE0
+}
+accents['lighter'] = colors.light.light
+accents['darker'] = colors.light.dark
+accents['black'] = colors.dark.light
+
+disabled_amount = 65%

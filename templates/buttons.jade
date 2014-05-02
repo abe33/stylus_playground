@@ -1,0 +1,29 @@
+extend layout.jade
+
+block content
+  - var colors = 'lighter default darker black red orange yellow yellow-green green cyan blue violet pink'.split(' ')
+  - var size_variants = 'small default disabled large'.split(' ')
+  - var icon_variants = 'default icon-left icon-right icon disc'.split(' ')
+  - var themes = 'light dark'.split(' ')
+  .row
+    each theme in themes
+      .col-6
+        .half-padded(class=theme)
+          each color in colors
+            h3= color
+            each size_variant in size_variants
+              .quarter-padded-v
+                each icon_variant in icon_variants
+                  - var cls = ['btn-' + color, 'btn-' + size_variant, 'btn-' + icon_variant]
+                  if icon_variant == 'disc'
+                    - cls.push('btn-icon')
+
+                  button.btn(class=cls, disabled=size_variant == 'disabled')
+                    if icon_variant != 'default'
+                      if icon_variant == 'icon-left'
+                        i.fa.fa-chevron-left
+                      else
+                        i.fa.fa-chevron-right
+                    span.text= 'Action Button'
+
+  include scripts.jade

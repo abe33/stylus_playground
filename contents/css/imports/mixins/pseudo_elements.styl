@@ -1,0 +1,16 @@
+before(content='')
+  &:before
+    content content
+    {block}
+
+after(content='')
+  &:after
+    content content
+    {block}
+
+before_and_after(content='')
+  +before(content)
+    {block}
+
+  +after(content)
+    {block}
