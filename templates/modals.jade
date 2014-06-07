@@ -1,0 +1,16 @@
+extend layout.jade
+
+block content
+  - var themes = 'light dark'.split(' ')
+  - var size_variants = 'small default large'.split(' ')
+
+  .row
+    each theme in themes
+      .col-1-2(class=theme, style='height: 500px')
+        .half-padded
+          include login_form
+          button.btn(data-toggle='modal', data-target='#modal') Open Modal
+
+  .overlay
+  #modal.modal
+    include login_form

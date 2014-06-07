@@ -6,10 +6,12 @@ html(lang='en')
         = locals.name
 
     block head
-    include head.jade
+    include head
 
   body(class=bodyclass)
+    include navigation
+
     block content
 
-    include scripts.jade
+    include scripts
     block script

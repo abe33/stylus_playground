@@ -1,8 +1,6 @@
-default_background = colors.light.base
-default_text = colors.dark.base
-shadow = colors.dark.dark - rgba(0,0,0,0.5)
-highlight = colors.light.light
-shine = colors.light.light
+shadow = base02 - rgba(0,0,0,0.5)
+highlight = base2
+shine = base2
 shine_blend_factor = 70%
 hover_blend_factor = 6%
 blank = rgba(255,255,255,0)
@@ -51,7 +49,7 @@ button_settings = {
   100%
     transform translate3d(0,100%,0)
 
-colored_btn(bg, txt, bevel=2px)
+colored_btn(bg=base0, txt, bevel=2px)
   border_color = darken(bg, 15%)
   bevel_color = darken(bg, 15%) - rgba(0, 0, 0, 0.5)
   highlight_color = lighten(bg, 20%) - rgba(0, 0, 0, 0.5)
@@ -156,8 +154,8 @@ colored_btn(bg, txt, bevel=2px)
 icon_owner(btn, button_settings)
 
 .btn
-  background_color = default_background
-  text_color = default_text
+  background_color = base1
+  text_color = base01
 
   text-transform uppercase
   font-weight normal

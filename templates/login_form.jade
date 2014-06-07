@@ -1,0 +1,27 @@
+.input.input-large.input-icon-left.input-darker
+  input(type='text', placeholder='john.doe@example.com')
+  i.fa.fa-user
+
+div &nbsp;
+
+.input.input-large.input-icon-left.input-darker
+  input(type='password', placeholder='••••••')
+  i.fa.fa-lock
+
+div &nbsp;
+
+.field.checkbox
+  input(type='checkbox', id="checkbox-" + theme)
+  label(for="checkbox-" + theme)
+    .check
+    span.text= 'CheckBox'
+
+div &nbsp;
+
+button.btn.btn-orange.btn-icon-left.btn-large
+  i.fa.fa-chevron-left
+  = "Action Button"
+
+button.btn.btn-yellow-green.btn-icon-right.btn-large
+  i.fa.fa-chevron-right
+  = "Action Button"

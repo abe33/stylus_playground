@@ -6,7 +6,9 @@ block content
 
   .row
     each theme in themes
-      .col-
+      .col-1-2(class= theme)
         each size_variant in size_variants
-          .navbar(class= 'navbar-' + size_variant)
-            
+          nav
+            ul.navbar.navbar-demo(class= 'navbar-' + size_variant)
+              - for i in [1, 2, 3, 4, 5]
+                li: a(href='#')= "Item " + i

@@ -48,43 +48,65 @@ small_vertical_padding = paddings_px.small
 large_horizontal_padding = paddings_px.base
 large_vertical_padding = paddings_px.half
 
+small_font_size = 10px
+default_font_size = 12px
+large_font_size = 14px
+extra_large_font_size = 18px
+
 // FONTS
 font_interface = 'Open Sans', sans-serif
 fonts = {
-  small: 10px
-  base: 12px
-  large: 14px
+  small: small_font_size
+  base: default_font_size
+  large: large_font_size
 }
+
+base02 = #171A2B
+base01 = #393942
+base00 = #4C435B
+base0 = #BFB2F7
+base1 = #DCD4F9
+base2 = #FAE8FF
+
+color_red = #E01F59
+color_orange = #E0451F
+color_yellow = #E0A61F
+color_yellow_green = #ACD313
+color_green = #56d513
+color_cyan = #1FBAE0
+color_blue = #1F59E0
+color_violet = #A61FE0
+color_pink = #E01FBA
 
 // COLORS
 colors = {
   light: {
-    dark: #BFB2F7
-    base: #DCD4F9
-    light: #FAE8FF
+    dark: base0
+    base: base1
+    light: base2
     opposite: 'dark'
   }
   dark: {
-    dark: #171A2B
-    base: #393942
-    light: #4C435B
+    dark: base02
+    base: base01
+    light: base00
     opposite: 'light'
   }
 }
 
 accents = {
-  pink: #E01FBA
-  red: #E01F59
-  orange: #E0451F
-  yellow: #E0A61F
-  yellow-green: #ACD313
-  green: #59E01F
-  cyan: #1FBAE0
-  blue: #1F59E0
-  violet: #A61FE0
+  pink: color_pink
+  red: color_red
+  orange: color_orange
+  yellow: color_yellow
+  yellow-green: color_yellow_green
+  green: color_green
+  cyan: color_cyan
+  blue: color_blue
+  violet: color_violet
 }
-accents['lighter'] = colors.light.light
-accents['darker'] = colors.light.dark
-accents['black'] = colors.dark.light
+accents['lighter'] = base2
+accents['darker'] = base0
+accents['black'] = base00
 
 disabled_amount = 65%
