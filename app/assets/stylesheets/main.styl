@@ -1,0 +1,54 @@
+@import "variables.styl"
+@import "css3.styl"
+
+@import "functions/blend.styl"
+@import "functions/colors.styl"
+
+@import "mixins/responsive.styl"
+@import "mixins/text.styl"
+@import "mixins/boxes.styl"
+@import "mixins/inputs.styl"
+@import "mixins/icons.styl"
+@import "mixins/pseudo_elements.styl"
+
+@import "grid.styl"
+@import "paddings.styl"
+
+@import "partials/buttons.styl"
+@import "partials/inputs.styl"
+@import "partials/check_boxes.styl"
+@import "partials/alerts.styl"
+@import "partials/input_groups.styl"
+@import "partials/navbar.styl"
+@import "partials/modals.styl"
+
+body_backround = colors.dark.base
+
+html
+  width 100%
+  height 100%
+  overflow-x hidden
+  font-family font_interface
+  font-weight 100
+
+html, body
+  margin 0
+  background body_backround
+
+*
+  box_sizing()
+
+.dummy
+  padding 10px 0
+  text-align center
+  color #666
+  background #F4F4F4
+  border 1px solid #E4E4E4
+
+for name,palette in colors
+  col = palette.base
+  opp = colors[palette.opposite].base
+
+  .{name}
+    background col
+    color opp

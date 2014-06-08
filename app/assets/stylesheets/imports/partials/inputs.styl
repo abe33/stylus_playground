@@ -1,0 +1,170 @@
+
+background_color = colors.light.light
+border_color = colors.light.dark
+text_color = colors.dark.base
+shadow_color = colors.dark.base - rgba(0,0,0,0.7)
+default_color = colors.light.base
+error_color = accents.red
+
+input_settings = {
+  small: {
+    horizontal_padding: small_horizontal_padding
+    vertical_padding: small_vertical_padding
+    font_size: 12px
+    icon_size: 14px
+    box_height: 23px
+  }
+  default: {
+    horizontal_padding: default_horizontal_padding
+    vertical_padding: default_vertical_padding
+    font_size: 14px
+    icon_size: 16px
+    box_height: 32px
+  }
+  large: {
+    horizontal_padding: default_horizontal_padding
+    vertical_padding: large_vertical_padding
+    font_size: 18px
+    icon_size: 20px
+    box_height: 43px
+  }
+}
+
++for_gecko()
+  input:focus,
+  input:active,
+  input::-moz-focus-inner,
+  input:-moz-focusring
+    outline none !important
+    -moz-appearance none
+    appearance none
+
+
+icon_owner(input, input_settings, input)
+
+.input
+  color text_color
+  background background_color
+  border-top 2px solid border_color
+  border-radius 4px
+  font-family font_interface
+  width 100% !important
+  overflow hidden
+  transition all 0.3s
+
+  &.input-has-errors
+    &:after
+      content ''
+      z-index 2
+      border 2px solid error_color
+      border-radius inherit
+      absolute(0,0,0,0)
+
+  &.focus
+    background white
+
+  &:before
+    content ''
+    z-index 2
+    box-shadow inset 0 0 2px shadow_color
+
+    box(100%)
+    absolute(0,0)
+
+  label, input
+    vertical-align top
+
+  input
+    border none
+    background none
+    z-index 3
+    relative()
+    box(100%)
+
+    +placeholder()
+      font-family font_interface
+      font-weight 100
+
+  i
+    background default_color
+    z-index 1
+
+  &.input-disabled
+    pointer-events none
+
+    i
+      color darken(disable(text_color), 20%)
+      background disable(default_color)
+
+  for name,accent in accents
+    has_shadow = name != lighter
+
+    shadow_color = darken(accent, 15%)
+    disabled_color = disable(accent)
+    disabled_shadow = disable(shadow_color)
+    .{name} &, &.input-{name}
+      if name != 'lighter'
+        text_color = colors.light.light
+
+      i
+        background accent
+        color text_color
+
+        if has_shadow
+          text-shadow 0 1px 0 shadow_color, 0 2px 0 shadow_color
+
+      &.input-disabled
+
+        i
+          background disabled_color
+
+          if has_shadow
+            text-shadow 0 1px 0 disabled_shadow, 0 2px 0 disabled_shadow
+            color lighten(disabled_color, 50%)
+          else
+            color darken(disabled_color, 20%)
+
+      &.input-bordered
+        &:after
+          content ''
+          z-index 2
+          border 2px solid accent
+          border-radius inherit
+          absolute(0,0,0,0)
+
+  &.input-small
+    border-radius 3px
+    border-top-width 1px
+
+  &.input-large
+    border-radius 6px
+
+    input
+      height 24px
+      margin-top -2px
+
+.dark
+  border_color = desaturate(darken(colors.dark.base, 20%), 50%)
+  text_color = colors.light.light
+  placeholder_color = colors.light.dark
+  background_color = colors.dark.light
+  shadow_color = colors.dark.dark - rgba(0,0,0,0.7)
+
+  .input
+    border-color border_color
+    background background_color
+    box-shadow inset 0 0 2px shadow_color
+
+    &.focus
+      background lighten(background_color, 20%)
+
+    input
+      color text_color
+
+      +placeholder()
+        color placeholder_color
+
+    &.input-disabled input
+      color desaturate(darken(text_color, 40%), 70%)
+      +placeholder()
+        color desaturate(darken(placeholder_color, 40%), 70%)

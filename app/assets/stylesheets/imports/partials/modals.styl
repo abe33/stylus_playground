@@ -1,0 +1,51 @@
+.overlay
+  z-index 100
+  display none
+  fixed(0, 0, 0, 0)
+
+  &.visible
+    display block
+
+.modal
+  background base2
+  min-width 600px
+  display none
+  z-index 101
+  transform translate(-50%, -50%)
+  overflow hidden
+  padding large_horizontal_padding
+  border-radius 20px
+  absolute(50%, 50%)
+
+  &.visible
+    display block
+
+  canvas
+    absolute()
+    opacity 0.65
+    z-index -1
+
+  .light &, &.light
+    background base2
+
+  .dark &, &.dark
+    background base02
+
+  h3
+    margin 0
+    font-weight normal
+
+  .modal-close-button
+    background transparent
+    color base2
+    border 1px solid (base2 - rgba(0,0,0,.5))
+    font-size 20px
+    border-radius 50%
+    transition all 0.2s
+
+    box(30px)
+    absolute(20px, null, null, 20px)
+
+    &:hover
+      background base2 - rgba(0,0,0,0.5)
+      color base2

@@ -1,0 +1,8 @@
+extend layout.jade
+
+block content
+  .row
+    for theme in ['light', 'dark']
+      .col-1-2
+        .actions.padded(class=theme)
+          include login_form

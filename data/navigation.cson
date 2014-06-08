@@ -1,0 +1,10 @@
+navigation:
+  grid: 'Grid &amp; Offset'
+  icon_owners: 'Icon Owners'
+  buttons: 'Buttons'
+  inputs: 'Inputs'
+  input_groups: 'Input Groups'
+  alerts: 'Alerts'
+  check_boxes: 'Check Boxes'
+  navbar: 'Navbar'
+  modals: 'Modals'

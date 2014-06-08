@@ -1,0 +1,37 @@
+extend layout.jade
+
+block content
+  - var colors = 'lighter default darker black red orange yellow yellow-green green cyan blue violet pink'.split(' ')
+  - var size_variants = 'small default large'.split(' ')
+  - var icon_variants = 'default icon-left icon-right'.split(' ')
+  - var themes = 'light dark'.split(' ')
+  .row
+    - var id = 0
+    each theme in themes
+      .col-6
+        .half-padded(class=theme)
+          each color in colors
+            h3= color
+            each size_variant in size_variants
+              .quarter-padded: .row.half-gutter
+                each icon_variant in icon_variants
+                  .col-1-3
+                    .input(class='input-' + size_variant)
+                      input(type='text', id="input-" + id, placeholder='placeholder', disabled=size_variant == 'disabled')
+
+                    .alert(class=['alert-' + size_variant,'alert-' + color, 'alert-' + icon_variant])
+                      span.text.
+                        This is a message in an alert that is long enough
+                        to wrap.
+                      if icon_variant.indexOf('icon') != -1
+                        i.fa.fa-lightbulb-o
+
+                    if icon_variant.indexOf('icon') != -1
+                      .alert.alert-icon-medal(class=['alert-' + size_variant,'alert-' + color, 'alert-' + icon_variant])
+                        span.text.
+                          This is a message in an alert that is long enough
+                          to wrap.
+                        i.fa.fa-lightbulb-o
+
+
+                - id++

@@ -1,0 +1,4 @@
+locals:
+  url: "http://localhost:8080",
+  name: "Stylus Grid & Other CSS Tricks",
+  description: "The name should be obvious"
